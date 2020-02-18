@@ -20,7 +20,21 @@ int main() {
         getline(input, line, ':');
 
         int population;
+
+        // Gives us the last integer it's able to read, even if it's in error state
         input >> population;
+
+        // Discards the return value of get(), which in this case is the newline character
+        // input.get();
+
+        // in C++ we can read whitespace like this
+        // (does the same as input.get() in this case)
+        input >> ws;
+
+        // 'input' is overloaded for file streams to tell us if they're in error state or not
+        if (!input) {
+
+        }
 
         cout << "'" << line << "'" << " -- " << population << endl;
     }
