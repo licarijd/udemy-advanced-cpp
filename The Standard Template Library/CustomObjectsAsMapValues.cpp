@@ -44,8 +44,8 @@ int main() {
     // The map needs a constructor with no parameters, since it needs to construct the object and then assign
     // values to that object, using the object we set it equal to (eg, Person("Mike", 40) will be copied to a Person object)
     people[0] = Person("Mike", 40);
-    people[0] = Person("Vicky", 30);
-    people[0] = Person("Raj", 20);
+    people[1] = Person("Vicky", 30);
+    people[2] = Person("Raj", 20);
 
     people.insert(make_pair(55, Person("Bob", 45)));
 
