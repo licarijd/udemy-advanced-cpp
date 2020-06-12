@@ -1,0 +1,43 @@
+/* In C++ 98, we have references. In C++ 11, we now call them specifically 
+L-Value references. Because C++ 11 introduces R-Value references.*/
+
+// An L-Value reference is a normal kind of reference.
+// This is a normal reference, and we can bind it to an L-Value
+// Test &rTest1 = test1;
+
+// If we try to bind an L-Value reference to an R-Value, we find we can't do it.
+// Remember, the return values of functions are r-values; they're temporary
+// values which don't have a name. We can't take the address of them,
+// and that tells us that they're r-values and not l-values.
+
+// So, the following will not work:
+// Test &rTest2 = getTest();
+
+// But, we can make it work by making rTest2 const:
+const Test &rTest2 = getTest();
+
+// Because const l-value references can bind to r-values
+
+// What happens here is that the lifetime of the R-Value from the 
+// funtion gets extended, as long as the constant reference rTest2 exists.
+
+// Normally, it'd be a temporary vairable that gets destroyed pretty quickly
+// after it serves it's purpose.
+
+// It has to be this way because copy constructors always have a const l-value 
+// parameter (check previous examples):
+
+// Sample Copy Constructor:
+
+Test(const Test &other) {
+    ...
+}
+
+// That means that with copy constructors, we can do something like this:
+
+test2(Test(1));
+
+// It works because const l-value references bind to r-values.
+// Test(1) is an r-value; it doesn't have a name, and we can't 
+// take the address of it.
+
